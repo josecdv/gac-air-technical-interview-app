@@ -1,0 +1,18 @@
+{% extends 'frontend.html.twig' %}
+
+{% block title %}Stockify{% endblock %}
+
+{% block body %}
+    <div class="col-lg-7 align-self-center">
+        <div class="p-3">
+            <h2 class="mb-2">Usuario registrado con éxito</h2>
+            <p class="cnf-mail mb-1">Bienvenido a Stockify, tu herramienta para controlar el stock de productos.</p>
+            <div class="d-inline-block w-100">
+                <a href="{{path('products_inicio')}}" class="btn btn-primary mt-3">Volver</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5 text-center">
+        <img src="../template/assets/images/success.png" class="img-fluid" alt="">
+    </div>
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'menu.html.twig' %}
+
+{% block title %}Productos - Stockify{% endblock %}
+
+{% block body %}
+    {% if errors %}
+        <div class="alert alert-danger alert-dismissible fade show">
+            <ul>
+                {% for error in errors %}
+                    <li>{{ error.message }}</li>
+                {% endfor %}
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endif %}
+    {% for mensaje in app.flashes('mensaje') %}
+        <div class="alert alert-{{app.flashes('css')[0]}} alert-dismissible fade show" role="alert">
+            {{ mensaje }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="d-flex flex-wrap flex-wrap align-items-center justify-content-between mb-4">
+                <div>
+                    <h4 class="mb-3">Productos</h4>
+                </div>
+                <a href="{{path('add_products')}}" class="btn btn-primary add-list">
+                    <i class="las la-plus mr-3"></i>Nuevo producto
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="table-responsive mb-3">
+                <table class="table mb-0 tbl-server-info no-footer" role="grid">
+                    <thead class="bg-white text-uppercase">
+                        <tr class="ligth ligth-data" role="row">
+                            <th class="text-left">Nombre</th>
+                            <th class="text-left">Código</th>
+                            <th class="text-left">Categoría</th>
+                            <th class="text-center">Stock</th>
+                            <th class="text-right">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for product in products %}
+                            <tr>
+                                <td class="text-left">{{product.name}}</td>
+                                <td class="text-left">{{product.id}}</td>
+                                <td class="text-left">{{product.getCategory.name}}</td>
+                                <td class="text-center">{{product.stock}}</td>
+                                <td class="text-right">
+                                    <a class="badge bg-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Eliminar stock" href="{{path('delete_stock_products', {id: product.id})}}">
+                                        <i class="las la-minus"></i>
+                                    </a>
+                                    <a class="badge bg-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Añadir stock" href="{{path('add_stock_products', {id: product.id})}}">
+                                        <i class="las la-plus"></i>
+                                    </a>
+                                    <a class="badge bg-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Histórico" href="#">
+                                        <i class="las la-history"></i>
+                                    </a>
+                                    <a class="badge bg-warning" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar" href="{{path('edit_products', {id: product.id})}}">
+                                        <i class="ri-pencil-line"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div> 
+    </div>
+
+    <script>
+        const elementosLi = document.querySelectorAll('li'); // Seleccionar todos los elementos li
+            elementosLi.forEach(elementoLi => {
+            elementoLi.classList.remove('active'); // Eliminar la clase "active"
+        });
+
+        const elementoLiObjetivo = document.querySelector('li.menu-products'); // Seleccionar el elemento li objetivo
+        elementoLiObjetivo.classList.add('active');
+    </script>
+{% endblock %}
