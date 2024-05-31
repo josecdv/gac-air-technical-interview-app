@@ -22,9 +22,6 @@ security:
       provider: app_user_provider
       form_login:
         login_path: acceso_login
-      logout:
-        path: acceso_logout
-        target: acceso_login
 
       # activate different ways to authenticate
       # https://symfony.com/doc/current/security.html#firewalls-authentication

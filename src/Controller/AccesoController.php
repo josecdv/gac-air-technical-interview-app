@@ -50,6 +50,8 @@ class AccesoController extends AbstractController
                         $this->addFlash('mensaje', 'Las credenciales ingresadas no son correctas');
                         return $this->redirectToRoute('acceso_login');
                     }
+                    $user->setRoles(['ROLE_ADMIN']);
+                    $this->em->flush();
                     
                     return $this->redirectToRoute('products_inicio');
                 }

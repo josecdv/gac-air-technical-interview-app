@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ProductsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ProductsRepository::class)
@@ -19,12 +20,14 @@ class Products
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Assert\NotBlank(message="El campo nombre no puede estar en blanco")
      */
     private $name;
 
     /**
      * @ORM\ManyToOne(targetEntity=Categories::class)
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank(message="Debe seleccionar una Categoria")
      */
     private $category;
 

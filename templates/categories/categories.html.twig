@@ -60,4 +60,14 @@
             </div>
         </div> 
     </div>
+
+    <script>
+        const elementosLi = document.querySelectorAll('li'); // Seleccionar todos los elementos li
+            elementosLi.forEach(elementoLi => {
+            elementoLi.classList.remove('active'); // Eliminar la clase "active"
+        });
+
+        const elementoLiObjetivo = document.querySelector('li.menu-categories'); // Seleccionar el elemento li objetivo
+        elementoLiObjetivo.classList.add('active');
+    </script>
 {% endblock %}

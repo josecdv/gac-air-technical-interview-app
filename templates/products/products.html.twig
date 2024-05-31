@@ -50,10 +50,10 @@
                                 <td class="text-left">{{product.getCategory.name}}</td>
                                 <td class="text-center">{{product.stock}}</td>
                                 <td class="text-right">
-                                    <a class="badge bg-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Eliminar stock" href="#">
+                                    <a class="badge bg-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Eliminar stock" href="{{path('delete_stock_products', {id: product.id})}}">
                                         <i class="las la-minus"></i>
                                     </a>
-                                    <a class="badge bg-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Añadir stock" href="#">
+                                    <a class="badge bg-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Añadir stock" href="{{path('add_stock_products', {id: product.id})}}">
                                         <i class="las la-plus"></i>
                                     </a>
                                     <a class="badge bg-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Histórico" href="#">
@@ -70,4 +70,14 @@
             </div>
         </div> 
     </div>
+
+    <script>
+        const elementosLi = document.querySelectorAll('li'); // Seleccionar todos los elementos li
+            elementosLi.forEach(elementoLi => {
+            elementoLi.classList.remove('active'); // Eliminar la clase "active"
+        });
+
+        const elementoLiObjetivo = document.querySelector('li.menu-products'); // Seleccionar el elemento li objetivo
+        elementoLiObjetivo.classList.add('active');
+    </script>
 {% endblock %}
