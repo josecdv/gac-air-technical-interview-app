@@ -4,12 +4,13 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\HasLifecycleCallbacks
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id
@@ -19,7 +20,7 @@ class User
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=128)
+     * @ORM\Column(type="string", length=128, unique=true)
      */
     private $username;
 
@@ -37,6 +38,11 @@ class User
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $created_at;
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
 
     // Value assigned when the class creates an instance
     public function __construct()
@@ -103,5 +109,35 @@ class User
         $this->created_at = $created_at;
 
         return $this;
+    }
+
+    public function getRoles(): array
+    {
+        // Garantiza que al menos un rol sea ROLE_USER
+        $roles = $this->roles;
+        if (empty($roles)) {
+            $roles[] = 'ROLE_USER';
+        }
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    public function getSalt(): ?string
+    {
+        // No es necesario cuando usas el algoritmo "bcrypt"
+        return null;
+    }
+
+    public function eraseCredentials()
+    {
+        // Si tu aplicación tiene datos sensibles, como contraseñas en texto plano,
+        // los puedes borrar aquí.
     }
 }
