@@ -28,15 +28,16 @@ class Product
     private $created_at;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $stock;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="products")
      * @ORM\JoinColumn(nullable=false)
      */
     private $category_id;
+
+    /**
+     * @ORM\OneToMany(targetEntity=StockHistoric::class, mappedBy="product")
+     */
+    private $stock;
+    
 
     public function __construct()
     {

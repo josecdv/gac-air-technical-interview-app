@@ -44,6 +44,11 @@ class User implements UserInterface
      */
     private $roles = [];
 
+    /**
+     * @ORM\OneToMany(targetEntity=StockHistoric::class, mappedBy="user")
+     */
+    private $stock;
+
     // Value assigned when the class creates an instance
     public function __construct()
     {
