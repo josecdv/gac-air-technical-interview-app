@@ -1,0 +1,53 @@
+version: '3.8'
+services:
+  mysqldb:
+    image: mysql:8.0.40
+    container_name: gac_travel_technical_interview_mysql
+    volumes:
+      - ./docker/mysqldb:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: gac_password
+      MYSQL_DATABASE: gac_database
+      MYSQL_USER: symfony
+      MYSQL_PASSWORD: symfony
+    ports:
+      - '3307:3306'
+    networks:
+      - mysqldb
+  php:
+    container_name: gac_travel_technical_interview_php
+    build:
+      context: ./docker/php
+    ports:
+      - '9001:9000'
+    restart: always
+    volumes:
+      - .:/var/www/symfony_docker
+    networks:
+      - mysqldb
+      - default
+  nginx:
+    container_name: gac_travel_technical_interview_nginx
+    image: nginx:stable-alpine
+    ports:
+      - '8080:80'
+      - '8043:443'
+    restart: always
+    volumes:
+      - ./:/var/www/symfony_docker
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+  mailhog:
+    container_name: mailhog
+    image: mailhog/mailhog
+    restart: always
+    ports:
+      - 8025:8025
+      - 1025:1025
+volumes:
+  mysqldb-data:
+networks:
+  mysqldb:
+    driver: bridge
+
