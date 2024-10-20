@@ -4,27 +4,29 @@
 
 {% block body %}
     <h1>Products index</h1>
-
+    <a href="{{ path('app_products_new') }}">Create new</a>
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>CreatedAt</th>
+                <th>Nombre</th>
+                <th>Código</th>
+                <th>Categoría</th>
                 <th>Stock</th>
-                <th>actions</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
         {% for product in products %}
             <tr>
-                <td>{{ product.id }}</td>
                 <td>{{ product.name }}</td>
-                <td>{{ product.createdAt ? product.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ product.id }}</td>
+                <td>{{ product.category}}</td>
                 <td>{{ product.stock }}</td>
                 <td>
-                    <a href="{{ path('app_products_show', {'id': product.id}) }}">show</a>
-                    <a href="{{ path('app_products_edit', {'id': product.id}) }}">edit</a>
+                    <a href="{{ path('app_products_stock_subtract', {'id': product.id}) }}">-</a>
+                    <a href="{{ path('app_products_stock_add', {'id': product.id}) }}">+</a>
+                    <a href="{{ path('app_products_edit', {'id': product.id}) }}">Hist</a>
+                    <a href="{{ path('app_products_edit', {'id': product.id}) }}">Editar</a>
                 </td>
             </tr>
         {% else %}
@@ -35,5 +37,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_products_new') }}">Create new</a>
+
 {% endblock %}
