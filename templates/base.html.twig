@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
-            <link rel="shortcut icon" href="{{ asset('@htmlTemplates/assets/') }}" />
-            <link rel="stylesheet" href="assets/css/backend-plugin.min.css">
-            <link rel="stylesheet" href="assets/css/backend.css?v=1.0.0">
-            <link rel="stylesheet" href="assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
-            <link rel="stylesheet" href="assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
-            <link rel="stylesheet" href="assets/vendor/remixicon/fonts/remixicon.css">
-        {% endblock %}
+    {% block stylesheets %}
+        {# {{ encore_entry_link_tags('app') }} #}
+        <link rel="shortcut icon" href="{{ absolute_url(asset('assets/images/favicon.ico')) }}"/>
+        <link rel="stylesheet" href="{{ absolute_url(asset('assets/css/backend-plugin.min.css')) }}"/>
+        <link rel="stylesheet" href="{{ absolute_url(asset('assets/css/backend.css?v=1.0.0')) }}"/>
+        <link rel="stylesheet" href="{{ absolute_url(asset('assets/vendor/@fortawesome/fontawesome-free/css/all.min.css')) }}"/>
+        <link rel="stylesheet" href="{{ absolute_url(asset('assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css')) }}"/>
+        <link rel="stylesheet" href="{{ absolute_url(asset('assets/vendor/remixicon/fonts/remixicon.css')) }}"/>
+    {% endblock %}
 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+
+</head>
+<body>
+{% block body %}{% endblock %}
+{% block javascripts %}
+    {# {{ encore_entry_script_tags('app') }} #}
+    <script src="{{ absolute_url(asset('assets/js/backend-bundle.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('assets/js/app.js')) }}"></script>
+{% endblock %}
+</body>
 </html>
