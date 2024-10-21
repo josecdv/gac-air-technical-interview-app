@@ -5,9 +5,11 @@
                 <div>
                     <h4 class="mb-3">{{ tableArgs.name }}</h4>
                 </div>
+                {% if tableArgs.btnRoute is not null %}
                 <a href="{{ path(tableArgs.btnRoute) }}" class="btn btn-primary add-list">
                     <i class="las la-plus mr-3"></i> {{ tableArgs.btnText }}
                 </a>
+                {% endif %}
             </div>
         </div>
         <div class="col-lg-12">

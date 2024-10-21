@@ -16,9 +16,14 @@ class StockHistoricController extends AbstractController
     #[Route('/', name: 'app_stock_historic_index', methods: ['GET'])]
     public function index(StockHistoricRepository $stockHistoricRepository, $id): Response
     {
-
+        $stockHistoric = $stockHistoricRepository->findBy(["product" => $id]);
         return $this->render('stock_historic/index.html.twig', [
-            'stock_historics' => $stockHistoricRepository->findBy(["product" => $id]),
+            'stock_historics' => $stockHistoric,
+            'tableArgs' => [
+                "name" => "Histórico del Artículo: " . reset($stockHistoric)->getProduct()->getName(),
+                "btnText" => " Nuevo usuario",
+                "btnRoute" => null,
+            ]
         ]);
     }
 }

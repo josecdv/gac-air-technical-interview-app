@@ -1,0 +1,36 @@
+{% extends 'dash.html.twig' %}
+
+{% block title %}StockHistoric index{% endblock %}
+
+{% block content %}
+    {% include 'stock_historic/_table_rows.html.twig' %}
+
+    {#    <h1>StockHistoric index</h1>#}
+
+{#    <table class="table">#}
+{#        <thead>#}
+{#            <tr>#}
+{#                <th>Id</th>#}
+{#                <th>CreatedAt</th>#}
+{#                <th>Stock</th>#}
+{#                <th>actions</th>#}
+{#            </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
+{#        {% for stock_historic in stock_historics %}#}
+{#            <tr>#}
+{#                <td>{{ stock_historic.id }}</td>#}
+{#                <td></td>#}
+{#                <td>{{ stock_historic.createdAt ? stock_historic.createdAt|date('Y-m-d H:i:s') : '' }}</td>#}
+{#                <td>{{ stock_historic.stock }}</td>#}
+{#                <td>#}
+{#                </td>#}
+{#            </tr>#}
+{#        {% else %}#}
+{#            <tr>#}
+{#                <td colspan="4">no records found</td>#}
+{#            </tr>#}
+{#        {% endfor %}#}
+{#        </tbody>#}
+{#    </table>#}
+{% endblock %}

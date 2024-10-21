@@ -1,0 +1,21 @@
+{% extends 'components/table.html.twig' %}
+{% block tableHead %}
+    <th class="text-left">Usuario</th>
+    <th class="text-left">Código</th>
+    <th class="text-left">Fecha de cambio</th>
+    <th class="text-center">Stock</th>
+{% endblock %}
+    {% block tableContent %}
+        {% for stock_historic in stock_historics %}
+            <tr>
+                <td class="text-left">{{ stock_historic.user.username }}</td>
+                <td class="text-left">{{ stock_historic.id }}</td>
+                <td class="text-left">{{ stock_historic.createdAt ? stock_historic.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td class="text-center">{{ stock_historic.stock }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+    {% endblock %}
