@@ -1,0 +1,48 @@
+{% extends 'components/login_action.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block wrapper %}
+    {% block form %}
+        {{ form_start(registrationForm) }}
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+        {% if app.user %}
+            <div class="mb-3">
+                You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+
+            </div>
+            <a href="{{ path('app_products_index') }}">Go to Dashbard</a>
+        {% else %}
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="floating-label form-group">
+                        {{ form_row(registrationForm.username, {'label': ' ', 'attr': {'class': 'floating-input form-control', 'placeholder': 'Usuario'} }) }}
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="floating-label form-group">
+                        {{ form_row(registrationForm.plainPassword, {'label': ' ', 'attr': {'class': 'floating-input form-control', 'placeholder': 'Contraseña'} }) }}
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="floating-label form-group">
+                        {{ form_row(registrationForm.agreeTerms, {'label': 'Aceptar términos', 'attr': {'class': 'form-check-input ',} }) }}
+                    </div>
+                </div>
+
+                <input type="hidden" name="_csrf_token"
+                       value="{{ csrf_token('authenticate') }}"
+                >
+            </div>
+            <button type="submit" class="btn btn-primary">{{ action }}</button>
+            {% if action is same as "Acceder" %}
+                <p class="mt-3">
+                    Crear una cuenta <a href="/register" class="text-primary">Registrarse</a>
+                </p>
+            {% endif %}
+        {% endif %}
+        {{ form_end(registrationForm) }}
+    {% endblock %}
+{% endblock %}
