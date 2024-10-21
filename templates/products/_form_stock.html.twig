@@ -1,0 +1,22 @@
+{% extends 'components/base_form.html.twig' %}
+
+{% block form %}
+    {% if error is not null  %}
+        <div class="alert alert-danger">
+            <p>{{ error }}</p>
+        </div>
+    {% endif %}
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col-md-12">
+            {{ form_row(form.stock, {'label': 'Stock *', 'attr': {'class': 'form-control'} }) }}
+            <span>Stock Actual: {{ product.stock }}</span>
+        </div>
+    </div>
+
+    <div class="col-md-12 mt-5 text-center">
+        <button type="submit" class="btn btn-primary mr-2">{{ formArgs.title }}</button>
+    </div>
+
+    {{ form_end(form) }}
+{% endblock %}

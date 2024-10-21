@@ -1,4 +1,17 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+{% extends 'components/base_form.html.twig' %}
+
+{% block form %}
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col-md-6">
+            {{ form_row(form.name, {'label': 'Nombre *', 'attr': {'class': 'form-control'} }) }}
+        </div>
+        <div class="col-md-6">
+            {{ form_row(form.category, {'label': 'Categoría *', 'attr': {'class': 'form-control'} }) }}
+        </div>
+    </div>
+    <div class="col-md-12 mt-5 text-center">
+        <button type="submit" class="btn btn-primary mr-2">Añadir producto</button>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

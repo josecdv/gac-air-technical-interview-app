@@ -46,6 +46,9 @@ class ProductsController extends AbstractController
         return $this->renderForm('products/new.html.twig', [
             'product' => $product,
             'form' => $form,
+            'formArgs' => [
+                "title" => "Nuevo producto",
+            ]
         ]);
     }
 
@@ -71,6 +74,9 @@ class ProductsController extends AbstractController
         return $this->renderForm('products/edit.html.twig', [
             'product' => $product,
             'form' => $form,
+            'formArgs' => [
+                "title" => "Editar producto",
+            ]
         ]);
     }
 
@@ -87,9 +93,9 @@ class ProductsController extends AbstractController
     #[Route('/{id}/substract', name: 'app_products_stock_subtract', methods: ['GET', 'POST'])]
     public function subtract(Request $request, Products $product, ProductsRepository $productsRepository): Response
     {
-        $error = false;
+        $error = null;
         $form = $this->createFormBuilder()
-            ->add('Stock', NumberType::class, [
+            ->add('stock', NumberType::class, [
                 'label' => 'Stock a eliminar'
             ])
             ->getForm();
@@ -97,10 +103,10 @@ class ProductsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            if ($form->getData()["Stock"] > $product->getStock()) {
+            if ($form->getData()["stock"] > $product->getStock()) {
                 $error = "El stock a eliminar no puede ser mayor al stock actual";
             } else {
-                $product->setStock($product->getStock() - $form->getData()["Stock"]);
+                $product->setStock($product->getStock() - $form->getData()["stock"]);
                 $productsRepository->add($product);
                 return $this->redirectToRoute('app_products_index', [], Response::HTTP_SEE_OTHER);
             }
@@ -111,6 +117,10 @@ class ProductsController extends AbstractController
             'form' => $form,
             'add' => false,
             'error' => $error,
+            'formArgs' => [
+                "title" => "Eliminar Stock",
+            ]
+
         ]);
     }
 
@@ -119,14 +129,14 @@ class ProductsController extends AbstractController
     {
         $defaultData = ['message' => 'Type your message here'];
         $form = $this->createFormBuilder($defaultData)
-            ->add('Stock', NumberType::class, [
+            ->add('stock', NumberType::class, [
                 'label' => 'Stock a añadir'
             ])
             ->getForm();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $product->setStock($product->getStock() + $form->getData()["Stock"]);
+            $product->setStock($product->getStock() + $form->getData()["stock"]);
             $productsRepository->add($product);
             return $this->redirectToRoute('app_products_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -135,6 +145,10 @@ class ProductsController extends AbstractController
             'product' => $product,
             'form' => $form,
             'add' => true,
+            'error' => null,
+            'formArgs' => [
+                "title" => "Añadir Stock",
+            ]
         ]);
     }
 }

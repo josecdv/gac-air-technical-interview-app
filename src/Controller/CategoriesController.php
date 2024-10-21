@@ -41,6 +41,9 @@ class CategoriesController extends AbstractController
         return $this->renderForm('categories/new.html.twig', [
             'category' => $category,
             'form' => $form,
+            'formArgs' => [
+                "title" => "Nueva Categoría",
+            ]
         ]);
     }
 

@@ -1,4 +1,9 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+{% extends 'components/base_form.html.twig' %}
+{% block form %}
+    {{ form_start(form, {'attr': {'id': 'user_form'}})}}
+
+    {{ form_end(form) }}
+    <div class="col-md-12 mt-5 text-center">
+        <button class="btn btn-primary mr-12" form="user_form" >{{ formArgs.title }}</button>
+    </div>
+{% endblock %}
