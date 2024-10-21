@@ -18,6 +18,11 @@ class CategoriesController extends AbstractController
     {
         return $this->render('categories/index.html.twig', [
             'categories' => $categoriesRepository->findAll(),
+            'tableArgs' => [
+                "name" => "Categorías",
+                "btnText" => " Nueva Categoria",
+                "btnRoute" => "app_categories_new",
+            ]
         ]);
     }
 

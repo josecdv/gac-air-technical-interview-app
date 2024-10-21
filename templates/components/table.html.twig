@@ -1,0 +1,56 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="d-flex flex-wrap flex-wrap align-items-center justify-content-between mb-4">
+                <div>
+                    <h4 class="mb-3">{{ tableArgs.name }}</h4>
+                </div>
+                <a href="{{ path(tableArgs.btnRoute) }}" class="btn btn-primary add-list">
+                    <i class="las la-plus mr-3"></i> {{ tableArgs.btnText }}
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="table-responsive mb-3">
+                <table class="table mb-0 tbl-server-info no-footer" role="grid">
+                    <thead class="bg-white text-uppercase">
+                    <tr class="ligth ligth-data" role="row">
+                        {% block tableHead %}
+                        <th class="text-left">Placeholder</th>
+                        <th class="text-left">Elements</th>
+                        {% endblock %}
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% block tableContent %}
+                        <tr>
+                            <td class="text-left">PlaceHolder</td>
+                            <td class="text-left">1</td>
+                            <td class="text-left">Balones de fútbol</td>
+                            <td class="text-center">10</td>
+                            <td class="text-right">
+                                <a class="badge bg-danger" data-toggle="tooltip" data-placement="top" title=""
+                                   data-original-title="Eliminar stock" href="#">
+                                    <i class="las la-minus"></i>
+                                </a>
+                                <a class="badge bg-success" data-toggle="tooltip" data-placement="top" title=""
+                                   data-original-title="Añadir stock" href="#">
+                                    <i class="las la-plus"></i>
+                                </a>
+                                <a class="badge bg-success" data-toggle="tooltip" data-placement="top" title=""
+                                   data-original-title="Histórico" href="#">
+                                    <i class="las la-history"></i>
+                                </a>
+                                <a class="badge bg-warning" data-toggle="tooltip" data-placement="top" title=""
+                                   data-original-title="Editar" href="#">
+                                    <i class="ri-pencil-line"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endblock %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -18,7 +18,18 @@
 
 </head>
 <body>
-{% block body %}{% endblock %}
+{% block base %}
+<!-- loader Start -->
+<div id="loading">
+    <div id="loading-center">
+    </div>
+</div>
+<!-- loader END -->
+
+<div class="wrapper">
+    {% block wrapper %} {% endblock %}
+</div>
+{% endblock %}
 {% block javascripts %}
     {# {{ encore_entry_script_tags('app') }} #}
     <script src="{{ absolute_url(asset('assets/js/backend-bundle.min.js')) }}"></script>

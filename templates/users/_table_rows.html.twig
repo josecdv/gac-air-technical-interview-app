@@ -1,0 +1,25 @@
+{% extends 'components/table.html.twig' %}
+{% block tableHead %}
+    <th class="text-left">Username</th>
+    <th class="text-center">Código</th>
+    <th class="text-center">Active</th>
+    <th class="text-center">CreatedAt</th>
+    <th class="text-center">actions</th>
+{% endblock %}
+    {% block tableContent %}
+        {% for user in users %}
+            <tr>
+                <td class="text-left">{{ user.username }}</td>
+                <td class="text-center">{{ user.id }}</td>
+                <td class="text-center">{{ user.active ? 'Yes' : 'No' }}</td>
+                <td class="text-center">{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td class="text-center">
+                    <a href="{{ path('app_users_edit', {'id': user.id}) }}">Editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+    {% endblock %}

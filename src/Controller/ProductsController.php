@@ -22,6 +22,12 @@ class ProductsController extends AbstractController
     {
         return $this->render('products/index.html.twig', [
             'products' => $productsRepository->findAll(),
+            'tableArgs' => [
+                "name" => "Productos",
+                "btnText" => " Nuevo producto",
+                "btnRoute" => "app_products_new",
+                ]
+
         ]);
     }
 

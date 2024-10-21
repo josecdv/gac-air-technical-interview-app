@@ -1,41 +1,7 @@
-{% extends 'base.html.twig' %}
+{% extends 'dash.html.twig' %}
 
 {% block title %}Products index{% endblock %}
 
-{% block body %}
-    <h1>Products index</h1>
-    <a href="{{ path('app_products_new') }}">Create new</a>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Código</th>
-                <th>Categoría</th>
-                <th>Stock</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for product in products %}
-            <tr>
-                <td>{{ product.name }}</td>
-                <td>{{ product.id }}</td>
-                <td>{{ product.category}}</td>
-                <td>{{ product.stock }}</td>
-                <td>
-                    <a href="{{ path('app_products_stock_subtract', {'id': product.id}) }}">-</a>
-                    <a href="{{ path('app_products_stock_add', {'id': product.id}) }}">+</a>
-                    <a href="{{ path('app_stock_historic_index', {'id': product.id}) }}">Hist</a>
-                    <a href="{{ path('app_products_edit', {'id': product.id}) }}">Editar</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-
+{% block content %}
+    {% include 'products/_table_rows.html.twig' %}
 {% endblock %}
