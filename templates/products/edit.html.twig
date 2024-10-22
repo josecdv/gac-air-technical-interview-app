@@ -1,0 +1,8 @@
+{% extends 'dash.html.twig' %}
+
+{% block title %}Edit Products{% endblock %}
+
+{% block content %}
+    {{ include('products/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('products/_delete_form.html.twig') }}
+{% endblock %}

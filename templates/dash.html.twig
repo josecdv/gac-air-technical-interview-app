@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block wrapper %}
+    {% include 'components/sidebar.html.twig' %}
+    <div class="content-page">{% block content %}Content goes here!{% endblock %}</div>
+{% endblock %}

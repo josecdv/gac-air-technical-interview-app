@@ -1,0 +1,42 @@
+{% extends 'components/table.html.twig' %}
+{% block tableHead %}
+    <th class="text-left">Nombre de usuario</th>
+    <th class="text-center">Código</th>
+    <th class="text-center">Activo</th>
+    <th class="text-center">Fecha de creación</th>
+    <th class="text-center">Acciones</th>
+{% endblock %}
+    {% block tableContent %}
+        {% for user in users %}
+            <tr>
+                <td class="text-left">{{ user.username }}</td>
+                <td class="text-center">{{ user.id }}</td>
+                <td class="text-center">{{ user.active ? 'Yes' : 'No' }}</td>
+                <td class="text-center">{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td class="text-center">
+                    {% if user.id == app.user.id %}
+
+                        <a class="badge bg-warning" data-toggle="tooltip" data-placement="top" title=""
+                           data-original-title="Cambiar nombre de usuario"
+                           href="{{ path('app_users_edit', {'id': user.id}) }}">
+                            <i class="las la-user"></i>
+                        </a>
+                        <a class="badge bg-danger" data-toggle="tooltip" data-placement="top" title=""
+                           data-original-title="Cambiar contraseña"
+                           href="{{ path('app_users_change_password', {'id': user.id}) }}">
+                            <i class="las la-key"></i>
+                        </a>
+                        <a class="badge bg-info" data-toggle="tooltip" data-placement="top" title=""
+                           data-original-title="Cambiar Activo"
+                           href="{{ path('app_users_change_active', {'id': user.id}) }}">
+                            <i class="las la-check"></i>
+                        </a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+    {% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'components/table.html.twig' %}
+{% block tableHead %}
+    <th class="text-left">Nombre</th>
+    <th class="text-center">Código</th>
+{% endblock %}
+    {% block tableContent %}
+        {% for category in categories %}
+            <tr>
+                <td class="text-left">{{ category.name }}</td>
+                <td class="text-center">{{ category.id }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+    {% endblock %}

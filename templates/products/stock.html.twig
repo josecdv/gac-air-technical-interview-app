@@ -1,0 +1,11 @@
+{% extends 'dash.html.twig' %}
+ {% if add == false %}
+     {% set mode = "Eliminar" %}
+ {% else %}
+     {% set mode = "Añadir" %}
+ {% endif %}
+{% block title %}{{ mode }} Stock{% endblock %}
+{% block content %}
+    {{ include('products/_form_stock.html.twig') }}
+
+{% endblock %}

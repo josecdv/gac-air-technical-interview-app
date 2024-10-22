@@ -1,0 +1,43 @@
+{% extends 'components/table.html.twig' %}
+{% block tableHead %}
+    <th class="text-left">Nombre</th>
+    <th class="text-left">Código</th>
+    <th class="text-left">Categoría</th>
+    <th class="text-center">Stock</th>
+    <th class="text-right">Acciones</th>
+{% endblock %}
+    {% block tableContent %}
+        {% for product in products %}
+            <tr>
+                <td class="text-left">{{ product.name }}</td>
+                <td class="text-left">{{ product.id }}</td>
+                <td class="text-left">{{ product.category }}</td>
+                <td class="text-center">{{ product.stock }}</td>
+                <td class="text-right">
+                    <a class="badge bg-danger" data-toggle="tooltip" data-placement="top" title=""
+                       data-original-title="Eliminar stock"
+                       href="{{ path('app_products_stock_subtract', {'id': product.id}) }}">
+                        <i class="las la-minus"></i>
+                    </a>
+                    <a class="badge bg-success" data-toggle="tooltip" data-placement="top" title=""
+                       data-original-title="Añadir stock"
+                       href="{{ path('app_products_stock_add', {'id': product.id}) }}">
+                        <i class="las la-plus"></i>
+                    </a>
+                    <a class="badge bg-success" data-toggle="tooltip" data-placement="top" title=""
+                       data-original-title="Histórico"
+                       href="{{ path('app_stock_historic_index', {'id': product.id}) }}">
+                        <i class="las la-history"></i>
+                    </a>
+                    <a class="badge bg-warning" data-toggle="tooltip" data-placement="top" title=""
+                       data-original-title="Editar" href="{{ path('app_products_edit', {'id': product.id}) }}">
+                        <i class="ri-pencil-line"></i>
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+    {% endblock %}

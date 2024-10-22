@@ -1,4 +1,3 @@
-
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
@@ -18,3 +17,15 @@
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
+
+/docker/mysqldb
+/.idea/commandlinetools/schemas/frameworkDescriptionVersion1.1.4.xsd
+/.idea/commandlinetools/Symfony_17_10_24__13_00.xml
+/.idea/dataSources/8ab132a1-4306-48bc-9243-a816004185c5/storage_v2/_src_/schema/gac_database.MUaWaw.meta
+/.idea/dataSources/8ab132a1-4306-48bc-9243-a816004185c5.xml
+/.idea/dataSources.local.xml
+/.idea/dataSources.xml
+/.idea/php.xml
+/.idea/phpunit.xml
+/.idea/vcs.xml
+/.idea/workspace.xml
